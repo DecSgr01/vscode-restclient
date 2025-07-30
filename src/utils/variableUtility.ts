@@ -3,13 +3,15 @@ import * as Constants from '../common/constants';
 import { Selector } from './selector';
 
 export class VariableUtility {
-    private static readonly environmentOrFileVariableReferenceRegex = /\{{2}[^{}]+\}{2}/;
 
-    private static readonly fileVariableDefinitionRegex = /@([^\s=]+)\s*=/;
+    // 支持中文变量名（中英文混合）
+    private static readonly environmentOrFileVariableReferenceRegex = /\{{2}[a-zA-Z0-9_\u4e00-\u9fa5\.]+\}{2}/;
 
-    private static readonly requestVariableReferenceRegex = /\{{2}(\w+)\.(response|request)?(\.body(\..*?)?|\.headers(\.[\w-]+)?)?\}{2}/;
+    private static readonly fileVariableDefinitionRegex = /@([a-zA-Z0-9_\u4e00-\u9fa5]+)\s*=/;
 
-    private static readonly partialRequestVariableReferenceRegex = /\{{2}(\w+)\.(.*?)?\}{2}/;
+    private static readonly requestVariableReferenceRegex = /\{{2}([a-zA-Z0-9_\u4e00-\u9fa5]+)\.(response|request)?(\.body(\..*?)?|\.headers(\.[\w-]+)?)?\}{2}/;
+
+    private static readonly partialRequestVariableReferenceRegex = /\{{2}([a-zA-Z0-9_\u4e00-\u9fa5]+)\.(.*?)?\}{2}/;
 
 
     public static getEnvironmentOrFileVariableReferenceNameRange(document: TextDocument, position: Position): Range | undefined {

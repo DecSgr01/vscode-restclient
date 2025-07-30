@@ -8,7 +8,7 @@ const xpath = require('xpath');
 const { DOMParser } = require('xmldom');
 const { JSONPath } = require('jsonpath-plus');
 
-const requestVariablePathRegex: RegExp = /^(\w+)(?:\.(request|response)(?:\.(body|headers)(?:\.(.*))?)?)?$/;
+const requestVariablePathRegex: RegExp = /^([\w\u4e00-\u9fa5]+)(?:\.(request|response)(?:\.(body|headers)(?:\.(.*))?)?)?$/;
 
 type HttpEntity = 'request' | 'response';
 type HttpPart = 'headers' | 'body';

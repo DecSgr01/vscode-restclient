@@ -57,7 +57,7 @@ export class RequestVariableProvider implements HttpVariableProvider {
         }
 
         const fileContent = document.getText();
-        const requestVariableReferenceRegex = new RegExp(Constants.RequestVariableDefinitionWithNameRegexFactory('\\w+'), 'mg');
+        const requestVariableReferenceRegex = new RegExp(Constants.RequestVariableDefinitionWithNameRegexFactory('[a-zA-Z0-9_\\u4e00-\\u9fa5]+'), 'mg');
 
         const variableNames = new Set<string>();
         let match: RegExpExecArray | null;

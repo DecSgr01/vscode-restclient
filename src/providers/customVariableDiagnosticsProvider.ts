@@ -149,7 +149,7 @@ export class CustomVariableDiagnosticsProvider {
 
         const vars = new Map<string, VariableWithPosition[]>();
         const lines = document.getText().split(Constants.LineSplitterRegex);
-        const pattern = /\{{2}(\w[^\s{}]*)\}{2}/g;
+        const pattern = /\{{2}([\w\u4e00-\u9fa5][^\s{}]*)\}{2}/g;
         lines.forEach((line, lineNumber) => {
             if (Selector.isCommentLine(line)) {
                 return;

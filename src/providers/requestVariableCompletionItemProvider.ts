@@ -8,8 +8,8 @@ import { RequestVariableCacheValueProcessor } from "../utils/requestVariableCach
 import { VariableUtility } from "../utils/variableUtility";
 
 
-const firstPartRegex: RegExp = /^(\w+)\.$/;
-const secondPartRegex: RegExp = /^(\w+)\.(request|response)\.$/;
+const firstPartRegex: RegExp = /^([a-zA-Z0-9_\u4e00-\u9fa5]+)\.$/;
+const secondPartRegex: RegExp = /^([a-zA-Z0-9_\u4e00-\u9fa5]+)\.(request|response)\.$/;
 
 export class RequestVariableCompletionItemProvider implements CompletionItemProvider {
     public async provideCompletionItems(document: TextDocument, position: Position, token: CancellationToken): Promise<CompletionItem[] | undefined> {
@@ -17,7 +17,7 @@ export class RequestVariableCompletionItemProvider implements CompletionItemProv
 
         let fullPath = document.getText(wordRange);
 
-        const match = fullPath.match(/(\w+)\.(.*?)?/);
+        const match = fullPath.match(/([a-zA-Z0-9_\u4e00-\u9fa5]+)\.(.*?)?/);
         if (!match || !this.checkIfRequestVariableDefined(document, match[1])) {
             return undefined;
         }

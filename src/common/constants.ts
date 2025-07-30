@@ -68,12 +68,12 @@ export const RequestMetadataRegex: RegExp = /^\s*(?:#|\/{2})\s*@([\w-]+)(?:\s+(.
 
 export const CommentIdentifiersRegex: RegExp = /^\s*(#|\/{2})/;
 
-export const FileVariableDefinitionRegex: RegExp = /^\s*@([^\s=]+)\s*=\s*(.*?)\s*$/;
+export const FileVariableDefinitionRegex: RegExp = /^\s*@([a-zA-Z0-9_\u4e00-\u9fa5]+)\s*=\s*(.*?)\s*$/;
 
 export const RequestVariableDefinitionWithNameRegexFactory = (name: string, flags?: string): RegExp =>
-    new RegExp(`^\\s*(?:#{1,}|\\/{2,})\\s+@name\\s+(${name})\\s*$`, flags);
+    new RegExp(`^\\s*(?:#{1,}|\\/{2,})\\s+@name\\s+([a-zA-Z0-9_\\u4e00-\\u9fa5]+)\\s*$`, flags);
 
-export const RequestVariableDefinitionRegex: RegExp = RequestVariableDefinitionWithNameRegexFactory("\\w+", "m");
+export const RequestVariableDefinitionRegex: RegExp = RequestVariableDefinitionWithNameRegexFactory("[a-zA-Z0-9_\\u4e00-\\u9fa5]+", "m");
 
 export const PromptCommentRegex = /^\s*(?:#{1,}|\/{2,})\s*@prompt\s+([^\s]+)(?:\s+(.*))?\s*$/;
 
